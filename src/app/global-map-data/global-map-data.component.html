@@ -1,0 +1,47 @@
+<app-menubar></app-menubar>
+
+<div class="mt-2 mx-auto width-80">
+    <p-panel header="Global Map Data">
+        <div class="data-table">
+            <p-table [value]="this.getKeysFromglobalMapData()" [tableStyle]="{ 'min-width': '50rem' }">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Key</th>
+                        <th>Value</th>
+                        <Th>Action</Th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-itemKey>
+                    <tr>
+                        <td>{{ itemKey }}</td>
+                        <td>{{ this.globalMapData[itemKey] }}</td>
+                        <td>
+                            <button type="button" (click)="editScenarioData(itemKey)" class="btn btn-primary btn-sm"><i class="pi pi-file-edit"></i></button>
+                            <button type="button" (click)="deleteScenarioData(itemKey)" class="btn btn-danger btn-sm"><i class="pi pi-times"></i></button>
+                        </td> 
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+        <hr>
+        <div class="data-input">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <input type="text" class="form-control" [(ngModel)]="globalMapDataKey" id="scenarioDataKey" placeholder="Enter Key here...">
+                      </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <input type="text" class="form-control" [(ngModel)]="globalMapDataValue" id="scenarioDataValue" placeholder="Enter Value here...">
+                      </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <button type="button" [disabled]="!globalMapDataKey || !globalMapDataValue" (click)="updateScenarioData()" class="btn btn-primary btn-sm"><i class="pi pi-plus"></i></button>                        
+                    </div>
+                </div>
+              </div>
+        </div>
+    </p-panel>
+</div>

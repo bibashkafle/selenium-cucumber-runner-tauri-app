@@ -1,0 +1,77 @@
+<div class="mt-2 mx-auto width-80">
+    <p-panel header="Scenario Data" [toggleable]="true" [collapsed]="true">
+        <div class="data-table">
+            <p-table [value]="this.getKeysFromScenarioData()" [tableStyle]="{ 'min-width': '50rem' }">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Key</th>
+                        <th>Value</th>
+                        <Th>Action</Th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-itemKey>
+                    <tr>
+                        <td>{{ itemKey }}</td>
+                        <td>{{ this.scenarioData[itemKey] }}</td>
+                        <td>
+                            <button type="button" (click)="editScenarioData(itemKey)" class="btn btn-primary btn-sm"><i class="pi pi-file-edit"></i></button>
+                            <button type="button" (click)="deleteScenarioData(itemKey)" class="btn btn-danger btn-sm"><i class="pi pi-times"></i></button>
+                        </td> 
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+        <hr>
+        <div class="data-input">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <input type="text" class="form-control" [(ngModel)]="scenarioDataKey" id="scenarioDataKey" placeholder="Enter Key here...">
+                      </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <input type="text" class="form-control" [(ngModel)]="scenarioDataValue" id="scenarioDataValue" placeholder="Enter Value here...">
+                      </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <button type="button" [disabled]="!scenarioDataKey || !scenarioDataValue" (click)="updateScenarioData()" class="btn btn-primary"><i class="pi pi-plus"></i></button>                        
+                    </div>
+                </div>
+              </div>
+        </div>
+    </p-panel>
+
+    <p-panel header="Scenario Step" [toggleable]="true">
+        <form>
+            <div class="form-group">
+                <label for="txtFeature" class="form-label">Feature</label>
+                <input type="text" class="form-control" id="txtFeature" placeholder="Enter Feature">
+            </div>
+            <div class="form-group">
+                <label for="txtScenarioOutLine" class="form-label">Scenario Outline</label>
+                <input type="text" class="form-control" id="txtScenarioOutLine" placeholder="Enter Scenario Outline">
+            </div>
+            <div class="form-group">
+                <label for="txtScenarioOutLine" class="form-label">Test Steps</label>
+                <textarea rows="10" class="form-control" pInputTextarea></textarea>
+            </div>
+            <hr>
+            <div>
+                <div class="row">
+                    <div class="col-11">
+                        <div class="form-group">
+                            <p-dropdown [options]="stepDefDescriptions" [style]="{'width':'100%'}"  [(ngModel)]="selectedStepDefDescription" optionLabel="testStep" [filter]="true" filterBy="testStep" [showClear]="true" placeholder="Select a test step"></p-dropdown>
+                          </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <button type="button"(click)="addToTestSteps()" [disabled]="!selectedStepDefDescription" class="btn btn-primary"><i class="pi pi-plus"></i></button>                        
+                        </div>
+                    </div>
+                  </div>
+            </div>
+        </form>
+    </p-panel>
+</div>
