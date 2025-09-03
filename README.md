@@ -1,5 +1,6 @@
 # Tauri With Angular
 
 # To run this application in Dev run below command in terminal 
-    first: npm run start
-    second:  npm run tauri:serve
+    1: npm insert
+    2: npm run start
+    3:  npm run tauri:serve
